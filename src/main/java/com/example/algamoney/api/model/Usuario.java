@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,8 @@ import javax.persistence.Table;
 public class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_sequence")
+	@SequenceGenerator(name="usuario_sequence", sequenceName = "usuario_sequence")
 	private Long codigo;
 
 	private String nome;

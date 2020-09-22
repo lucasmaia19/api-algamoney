@@ -23,12 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.algamoney.api.event.RecursoCriadoEvent;
 import com.example.algamoney.api.model.Pessoa;
+import com.example.algamoney.api.model.Usuario;
 import com.example.algamoney.api.repository.PessoaRepository;
+import com.example.algamoney.api.repository.UsuarioRepository;
 import com.example.algamoney.api.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaResource {
+	
+	
+	// TODO: Teste ...
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
@@ -79,6 +87,21 @@ public class PessoaResource {
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
 	public Page<Pessoa> pesquisar(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable) {
 		return pessoaRepository.findByNomeContaining(nome, pageable);
+	}
+	
+	@GetMapping("/teste-postgres")
+	public Usuario testePostgress(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable) {
+//		return pessoaRepository.findByNomeContaining(nome, pageable);
+
+		Usuario usuario = new Usuario();
+
+		usuario.setNome("Fulano de Tal");
+		usuario.setEmail("fulanodetal@algamoney.com");
+		usuario.setSenha("$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.");
+
+		return usuarioRepository.save(usuario);
+		
+//		return "Olá enfermeira !!!! :) \0/";
 	}
 
 }
