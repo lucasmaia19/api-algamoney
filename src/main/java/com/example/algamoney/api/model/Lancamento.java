@@ -21,9 +21,7 @@ import javax.validation.constraints.NotNull;
 public class Lancamento {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lancamento_sequence")
-	@SequenceGenerator(name="lancamento_sequence", sequenceName = "lancamento_sequence")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
 	
 	@NotNull

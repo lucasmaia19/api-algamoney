@@ -89,7 +89,7 @@ public class PessoaResource {
 		return pessoaRepository.findByNomeContaining(nome, pageable);
 	}
 	
-	@GetMapping("/teste-postgres")
+	@GetMapping("/teste")
 	public Usuario testePostgress(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable) {
 //		return pessoaRepository.findByNomeContaining(nome, pageable);
 
